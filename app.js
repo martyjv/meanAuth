@@ -31,6 +31,12 @@ app.use(cors());
 //Body Parser Middleware
 app.use(bodyParser.json());
 
+//Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+require('./config/passport')(passport);
+
 //Express Static Folder
 app.use(express.static(path.join(__dirname, '/public')));
 
@@ -44,5 +50,5 @@ app.get('/', (req, res) => {
 
 //Start Server
 app.listen(port, () => {
-    console.log('server started on port 3000');
+    console.log('server started on port '+port);
 })
